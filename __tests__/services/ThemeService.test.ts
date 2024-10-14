@@ -65,4 +65,29 @@ describe("ThemeService", () => {
     expect(cachedTheme).not.toBeNull();
   });
 
+  test("should retrieve cached theme before expiration", () => {
+    const themeData: ThemeCacheData = {
+      settings: {},
+      inlineStyles: {},
+      cssStylesText: ".example { color: red; }",
+      cacheDate: Math.floor(Date.now() / 1000),
+    };
+
+    const id = "theme1";
+    const version = "1.0";
+    const cacheDuration = 60;
+
+    setCachedTheme(
+      id,
+      version,
+      themeData.settings,
+      themeData.inlineStyles,
+      themeData.cssStylesText
+    );
+
+    const cachedTheme = getCachedTheme(id, version, cacheDuration);
+    expect(cachedTheme).not.toBeNull();
+    expect(cachedTheme?.cssStylesText).toBe(themeData.cssStylesText);
+  });
+
 });
