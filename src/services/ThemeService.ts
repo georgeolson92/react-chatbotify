@@ -2,11 +2,11 @@ import { Settings } from "../types/Settings";
 import { Styles } from "../types/Styles";
 import { Theme } from "../types/Theme";
 import { ThemeCacheData } from "../types/internal/ThemeCacheData";
-import { config } from "../../config";
+import { viteConfig } from "../../viteconfig";
 
-const DEFAULT_URL = config.DEFAULT_URL;
-const DEFAULT_EXPIRATION = config.DEFAULT_EXPIRATION;
-const CACHE_KEY_PREFIX = config.CACHE_KEY_PREFIX;
+const DEFAULT_URL = viteConfig.DEFAULT_URL;
+const DEFAULT_EXPIRATION = viteConfig.DEFAULT_EXPIRATION;
+const CACHE_KEY_PREFIX = viteConfig.CACHE_KEY_PREFIX;
 
 /**
  * Fetches the cached theme if it exist and checks for expiry.
@@ -59,6 +59,8 @@ export const setCachedTheme = (id: string, version: string, settings: Settings, 
 		cssStylesText,
 		cacheDate: currentTimeInSeconds
 	};
+
+	console.log(themeCacheData);
 
 	localStorage.setItem(`${CACHE_KEY_PREFIX}_${id}_${version}`, JSON.stringify(themeCacheData));
 }
