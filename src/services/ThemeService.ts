@@ -2,10 +2,11 @@ import { Settings } from "../types/Settings";
 import { Styles } from "../types/Styles";
 import { Theme } from "../types/Theme";
 import { ThemeCacheData } from "../types/internal/ThemeCacheData";
+import { config } from "../../config";
 
-const DEFAULT_URL = import.meta.env?.VITE_THEME_BASE_CDN_URL;
-const DEFAULT_EXPIRATION = import.meta.env?.VITE_THEME_DEFAULT_CACHE_EXPIRATION;
-const CACHE_KEY_PREFIX = import.meta.env?.VITE_THEME_CACHE_KEY_PREFIX;
+const DEFAULT_URL = config.DEFAULT_URL;
+const DEFAULT_EXPIRATION = config.DEFAULT_EXPIRATION;
+const CACHE_KEY_PREFIX = config.CACHE_KEY_PREFIX;
 
 /**
  * Fetches the cached theme if it exist and checks for expiry.
